@@ -37,7 +37,7 @@ def login():
 
     if user and user.check_password(data.get("password")):
         access_token = create_access_token(
-            identity=user.id, expires_delta=timedelta(hours=1)
+            identity=str(user.id), expires_delta=timedelta(hours=1)
         )
         return jsonify(access_token=access_token)
 
