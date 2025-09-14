@@ -1,0 +1,28 @@
+name: Security Scan
+
+on: [push, pull_request]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.0.12'
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install bandit safety
+    - name: Run Bandit (SAST)
+      run: bandit -r . -f html > bandit_report.html
+    - name: Run Safety (SCA)
+      run: safety check --full-report > safety_report.txt
+    - name: Upload reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: security-reports
+        path: |
+          bandit_report.html
+          safety_report.txt
