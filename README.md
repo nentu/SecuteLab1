@@ -133,31 +133,5 @@ chmod +x test_jwt.sh
 ./test_jwt.sh
 ```
 
-## Security Features
-
-1. **SQL Injection Protection**: Parameterized queries through SQLAlchemy ORM
-2. **XSS Protection**: Output escaping of all user-generated content
-3. **Authentication Security**:
-   - JWT tokens with expiration
-   - Password hashing using bcrypt
-   - Secure token transmission
-4. **Dependency Security**: Regular vulnerability scanning of dependencies
-5. **Code Security**: Static analysis of codebase for potential vulnerabilities
-
-## CI/CD Pipeline
-
-The GitHub Actions workflow provides:
-- Automated security scanning on every code change
-- Bandit SAST analysis for Python code vulnerabilities
-- Safety SCA analysis for dependency vulnerabilities
-- Artifact generation for security reports
-
-## Future Enhancements
-
-- Rate limiting to prevent brute force attacks
-- HTTPS enforcement for production
-- Refresh token implementation
-- User role-based access control
-- More comprehensive logging and monitoring
 
 This project demonstrates a secure API implementation with comprehensive security measures, automated testing, and CI/CD integration for ongoing security monitoring.
