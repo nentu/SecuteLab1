@@ -139,10 +139,19 @@ python app.py
 ### Ручное тестирование с помощью curl
 ```bash
 # Получение токена JWT
-curl -X POST -H "Content-Type: application/json" -d '{"имя пользователя":"admin","пароль":"password123"}' http://localhost:5000/auth/login
+curl -X POST -H "Content-Type: application/json" -d '{"username":"admin","password":"admin"}' http://localhost:5000/auth/login
 
 # Доступ к защищенной конечной точке (заменить <токен> на фактический JWT)
-curl -H "Авторизация: Предъявитель <токена>" http://localhost:5000/api/data
+curl -H "Authorization: Bearer <token>" http://localhost:5000/api/data
+```
+
+**Результаты**
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"username":"admin","password":"admin"}' http://localhost:5000/auth/login
+# {"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1OTY1MzY4MiwianRpIjoiNmY0ODAwNGItMzg4Ni00YmE4LTk3MTAtZDlhNTRiOGQwY2U0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NTk2NTM2ODIsImNzcmYiOiIyOWNhNjE4Ny0wY2I0LTQ3NzgtYWRhOC05ZmRkODE0ODcwMzUiLCJleHAiOjE3NTk2NTcyODJ9.YQJvCm9RxPuRAXL_IgKzvDrBdXdqFIc7Zi12oJjxpro"}
+curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1OTY1MzY4MiwianRpIjoiNmY0ODAwNGItMzg4Ni00YmE4LTk3MTAtZDlhNTRiOGQwY2U0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NTk2NTM2ODIsImNzcmYiOiIyOWNhNjE4Ny0wY2I0LTQ3NzgtYWRhOC05ZmRkODE0ODcwMzUiLCJleHAiOjE3NTk2NTcyODJ9.YQJvCm9RxPuRAXL_IgKzvDrBdXdqFIc7Zi12oJjxpro" http://localhost:5000/api/data
+# {"data":["Secret1","Secret2"]}
 ```
 
 ### Автоматическое тестирование
@@ -152,5 +161,8 @@ chmod +x test_jwt.sh
 ./test_jwt.sh
 ```
 
+**Результаты**:
+
+![alt text](imgs/image5.png)
 
 Этот проект демонстрирует безопасную реализацию API с комплексными мерами безопасности, автоматизированным тестированием и интеграцией CI/CD для постоянного мониторинга безопасности.
