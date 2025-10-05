@@ -1,137 +1,156 @@
-# Secure Web API Project
+# Проект безопасного веб-API
 
-## Overview
+## Обзор
 
-This project implements a secure web API using Python and Flask framework with JWT authentication and comprehensive security measures. The API provides user authentication and protected data endpoints while incorporating multiple security best practices.
+В этом проекте реализован безопасный веб-API с использованием Python и Flask framework с аутентификацией JWT и комплексными мерами безопасности. API обеспечивает аутентификацию пользователей и защиту конечных точек данных, а также включает в себя множество рекомендаций по обеспечению безопасности.
 
-## Task Implementation Summary
+## Краткое описание реализации задачи
 
-### 1. Project Stack and Initialization
-- **Technology Stack**: Python with Flask framework
-- **Package Management**: pip with requirements.txt
-- **Version Control**: Git repository initialized and connected to remote
-- **Database**: SQLite for simplicity with SQLAlchemy ORM
+### 1. Стек использованный для реазизации проекта 
+- **Стек технологий**: Python с платформой Flask
+- **Управление пакетами**: pip с requirements.txt
+- **Управление версиями**: Репозиторий Git инициализирован и подключен к удаленному
+- **База данных**: SQLite для упрощения работы с SQLAlchemy ORM
 
-### 2. Functional API Development
-Implemented three API endpoints:
-1. **POST /auth/login** - User authentication endpoint
-2. **GET /api/data** - Protected data endpoint (requires authentication)
-3. **GET /api/users** - Additional protected endpoint to list users
+### 2. Разработка функционального API
+Реализованы три конечные точки API:
+1. **POST /auth/login** - Конечная точка аутентификации пользователя
+2. **GET /api/data** - Защищенная конечная точка данных (требуется аутентификация)
+3. **GET /api/users** - Дополнительная защищенная конечная точка для составления списка пользователей
 
-### 3. Security Implementation
-- **SQL Injection Protection**: Used SQLAlchemy ORM with parameterized queries
-- **XSS Protection**: Implemented output escaping using Flask's `escape()` function
-- **Authentication Security**:
-  - JWT tokens with expiration for authentication
-  - Password hashing using bcrypt algorithm
-  - Middleware for JWT verification on protected endpoints
+### 3. Реализация безопасности
+- ** Защита от внедрения SQL**: Используется ORM SQLAlchemy с параметризованными запросами
+- ** Защита XSS**: Реализовано экранирование выходных данных с помощью функции escape() Flask
+- **Безопасность аутентификации**:
+  - Токены JWT с истекшим сроком действия для аутентификации
+  - Хэширование паролей с использованием алгоритма bcrypt
+  - Промежуточное программное обеспечение для проверки JWT на защищенных конечных точках
 
-### 4. CI/CD Pipeline with Security Scanning
-- Configured GitHub Actions workflow (.github/workflows/ci.yml)
-- Implemented SAST (Static Application Security Testing) using Bandit
-- Implemented SCA (Software Composition Analysis) using Safety
-- Automated security scans on every push and pull request
+### 4. Конвейер CI/CD со сканированием безопасности
+- Сконфигурирован рабочий процесс GitHub Actions (.github/workflows/ci.yml)
+- Реализован SAST (Статическое тестирование безопасности приложений) с использованием Bandit
+- Реализован SCA (Анализ состава программного обеспечения) с использованием Safety
+- Автоматическое сканирование безопасности при каждом push-запросе
 
-### 5. Testing and Documentation
-- Created comprehensive test script (test_jwt.sh) for API testing
-- Verified authentication functionality with curl and Postman
-- Security scanning reports generated and reviewed
+### 5. Тестирование и документация
+- Создан комплексный тестовый скрипт (test_jwt.sh) для тестирования API
+- Проверена функциональность аутентификации с помощью curl и Postman
+- Сгенерированы и просмотрены отчеты о проверке безопасности
 
-## Project Structure
+## Структура проекта
 
 ```
 secure-api/
-├── app.py                 # Main Flask application
-├── config.py             # Configuration settings
-├── requirements.txt      # Python dependencies
-├── test_jwt.sh          # Bash script for API testing
+├── app.py # Основное приложение Flask
+├── config.py # Параметры конфигурации
+├── requirements.txt # Зависимости Python
+├── test_jwt.sh # Скрипт на Bash для тестирования API
 ├── .github/
-│   └── workflows/
-│       └── ci.yml       # GitHub Actions CI/CD configuration
-└── README.md            # This file
+│ └── workflows/
+│    └── ci.yml # Действия на GitHub для настройки CI/CD
+└── README.md # Этот файл
 ```
 
-## Key Files Description
+## Описание ключевых файлов
 
 ### app.py
-Main Flask application containing:
-- User model definition with password hashing
-- JWT configuration and middleware
-- API endpoints implementation:
-  - POST /auth/login - User authentication
-  - GET /api/data - Protected data endpoint
-  - GET /api/users - Protected user listing endpoint
-- Database initialization
+Основное приложение Flask, содержащее:
+- Определение пользовательской модели с хэшированием паролей
+- Конфигурация JWT и промежуточное программное обеспечение
+- Реализация конечных точек API:
+  - POST /auth/login - Аутентификация пользователя
+  - GET /api/data - защищенной конечной точки данных
+  - GET /api/users - защищенной конечной точки списка пользователей
+- Инициализация базы данных
 
 ### config.py
-Configuration settings for the application including:
-- Secret keys for Flask and JWT
-- Database connection URI
-- Environment-specific configurations
+Параметры конфигурации приложения, включая:
+- Секретные ключи для Flask и JWT
+- URI подключения к базе данных
+- Конфигурации, зависящие от среды
 
 ### requirements.txt
-Lists all Python dependencies:
-- Flask web framework
-- Flask-SQLAlchemy for database ORM
-- Flask-JWT-Extended for JWT authentication
-- Bcrypt for password hashing
+Список всех зависимостей Python:
+- Веб-фреймворк Flask
+- Flask-SQLAlchemy для ORM базы данных
+- Flask-JWT-Extended для аутентификации JWT
+- Bcrypt для хэширования паролей
 
 ### test_jwt.sh
-Bash script for comprehensive API testing:
-- Tests login functionality
-- Verifies JWT token generation
-- Tests access to protected endpoints
-- Tests security measures (invalid tokens, missing authentication)
-- Provides color-coded output for easy verification
+Скрипт Bash для комплексного тестирования API:
+- Проверяет функциональность входа в систему
+- Проверяет генерацию токенов JWT
+- Проверяет доступ к защищенным конечным точкам
+- Проверяет меры безопасности (недействительные токены, отсутствие аутентификации)
+- Предоставляет выходные данные с цветовой кодировкой для упрощения проверки
 
 ### .github/workflows/ci.yml
-GitHub Actions configuration for CI/CD pipeline:
-- Automated security scanning on push and pull requests
-- Bandit SAST scanning for Python code
-- Safety SCA scanning for dependency vulnerabilities
-- Artifact generation for security reports
+Конфигурация действий GitHub для конвейера CI/CD:
+- Автоматическое сканирование безопасности по push- и pull-запросам
+- Бандитское сканирование SAST на наличие кода на Python
+- Проверка SCA безопасности на наличие уязвимостей в зависимостях
+- Генерация артефактов для отчетов о безопасности
 
-## Setup and Installation
+## Настройка и установка
 
-1. Clone the repository:
+1. Клонируем репозиторий:
 ```bash
-git clone <repository-url>
+git clone https://github.com/nentu/SecuteLab1
 cd secure-api
 ```
 
-2. Create and activate virtual environment:
+2. Создайте и активируйте виртуальную среду:
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+python -m venv
+source venv/bin/activate # В Windows: venv\Scripts\activate
 ```
 
-3. Install dependencies:
+3. Установите зависимости:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Run the application:
+4. Запустите приложение:
 ```bash
 python app.py
 ```
 
-## Testing
+## Проверка безопастности
 
-### Manual Testing with curl
+После запуска SAST утилиты bandit была найдена одна ошибка. Я пускал flask приложение в debug режиме.
+
+![alt text](imgs/image.png)
+
+Исправили в коде эту строку и CI/CD пайплайн был пройден!
+
+![alt text](imgs/image2.png)
+
+В артифактах pipelin'а можно найти логи проверок.
+
+### Bandit
+![alt text](imgs/image3.png)
+
+### Safety
+
+![alt text](imgs/image4.png)
+
+## Тестирование
+
+### Ручное тестирование с помощью curl
 ```bash
-# Get JWT token
-curl -X POST -H "Content-Type: application/json" -d '{"username":"admin","password":"password123"}' http://localhost:5000/auth/login
+# Получение токена JWT
+curl -X POST -H "Content-Type: application/json" -d '{"имя пользователя":"admin","пароль":"password123"}' http://localhost:5000/auth/login
 
-# Access protected endpoint (replace <token> with actual JWT)
-curl -H "Authorization: Bearer <token>" http://localhost:5000/api/data
+# Доступ к защищенной конечной точке (заменить <токен> на фактический JWT)
+curl -H "Авторизация: Предъявитель <токена>" http://localhost:5000/api/data
 ```
 
-### Automated Testing
-Run the comprehensive test script:
+### Автоматическое тестирование
+Запустите сценарий комплексного тестирования:
 ```bash
 chmod +x test_jwt.sh
 ./test_jwt.sh
 ```
 
 
-This project demonstrates a secure API implementation with comprehensive security measures, automated testing, and CI/CD integration for ongoing security monitoring.
+Этот проект демонстрирует безопасную реализацию API с комплексными мерами безопасности, автоматизированным тестированием и интеграцией CI/CD для постоянного мониторинга безопасности.
