@@ -18,4 +18,6 @@ jobs:
     - name: Run Bandit (SAST)
       run: bandit -r . -f txt
     - name: Run Safety (SCA)
-      run: safety check --full-report
+      env:
+            SAFETY_API_KEY: ${{ secrets.SAFETY_API_KEY }}
+      run: safety scan --key $SAFETY_API_KEY -r requirements.txt --full-report
