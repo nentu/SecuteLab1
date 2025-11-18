@@ -16,6 +16,6 @@ jobs:
         pip install -r requirements.txt
         pip install bandit safety
     - name: Run Bandit (SAST)
-      run: bandit -r . -f text
+      run: bandit -r . -f txt
     - name: Run Safety (SCA)
       run: safety check --full-report
