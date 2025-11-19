@@ -69,4 +69,4 @@ if __name__ == "__main__":
             db.session.add(user)
             db.session.commit()
 
-    app.run(debug=False)
+    app.run(debug=True)
